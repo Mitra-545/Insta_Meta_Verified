@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background Colors */
+    --color-background: #FAFAFA; /* warm off-white */
+    --color-foreground: #262626; /* instagram primary text */
+    --color-surface: #FFFFFF; /* pure white */
+    --color-card: #FFFFFF; /* white */
+    --color-card-foreground: #262626; /* instagram primary text */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #262626; /* instagram primary text */
+    
+    /* Border and Input */
+    --color-border: #DBDBDB; /* light gray */
+    --color-input: #FFFFFF; /* white */
+    --color-ring: #1877F2; /* instagram blue */
+    
+    /* Muted Colors */
+    --color-muted: #F5F5F5; /* light gray */
+    --color-muted-foreground: #8E8E8E; /* muted gray */
+    
+    /* Primary Colors */
+    --color-primary: #1877F2; /* instagram blue */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #42A5F5; /* lighter blue */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #F5F5F5; /* light gray */
+    --color-accent-foreground: #262626; /* instagram primary text */
+    
+    /* State Colors */
+    --color-success: #00C851; /* success green */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    --color-warning: #FF9500; /* attention orange */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    --color-error: #ED4956; /* instagram error red */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    --color-destructive: #ED4956; /* instagram error red */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    
+    /* Border Radius */
+    --radius: 6px;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Custom focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  /* Animation utilities */
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+  
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-shake,
+    .animate-pulse-subtle {
+      animation: none;
+    }
+    
+    * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+@layer components {
+  /* Form field spacing */
+  .form-field {
+    @apply mb-6;
+  }
+  
+  /* Button press animation */
+  .btn-press {
+    @apply active:scale-[0.98] transition-transform duration-150 ease-in-out;
+  }
+  
+  /* Floating label animation */
+  .floating-label {
+    @apply transition-all duration-200 ease-out;
+  }
+  
+  /* Skeleton loading */
+  .skeleton {
+    @apply animate-pulse-subtle bg-muted rounded;
+  }
+  
+  /* Touch target minimum size */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Hover states for pointer devices only */
+  @media (hover: hover) and (pointer: fine) {
+    .hover-lift {
+      @apply hover:shadow-md transition-shadow duration-200 ease-out;
+    }
+  }
+}
